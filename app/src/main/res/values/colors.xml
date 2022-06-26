@@ -9,6 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mainDarkColor">#122643</color>
     <color name="mainlightColor">#ffb6b5</color>
+    <color name="Statusbarreduced">#B3ffffff</color>
     <color name="grey_dark">#3D3D3D</color>
     <color name="grey_ligh">#8C8C8C</color>
+
+    <color name="bottom_nav_selected_icon">#ffffff</color>
+    <color name="bottom_nav_unselected_icon">#263238</color>
+
 </resources>
