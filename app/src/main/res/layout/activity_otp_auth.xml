@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".OtpAuthActivity">
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/enter_otp_img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/veri_logo"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verification"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textColor="@color/grey_dark"
+        android:layout_below="@id/veri_logo"
+        android:id="@+id/veri_heading"
+        android:padding="10dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You will get a OTP via SMS"
+        android:textColor="@color/grey_ligh"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/veri_heading"/>
+
+
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:id="@+id/otp"
+        android:hint="Enter OTP"
+        android:textAlignment="center"
+        android:inputType="number"
+        android:layout_centerHorizontal="true"
+        android:elevation="10dp"
+        android:textColorHint="@color/grey_ligh"
+        android:textColor="@color/grey_ligh"
+        android:textStyle="bold"
+        android:maxLength="10"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/phone_numer_edit_text_bg"
+        android:layout_below="@+id/text1"
+        />
+    <android.widget.Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/otp"
+        android:id="@+id/verify_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:background="@drawable/get_otp_button_bg"
+        android:textStyle="bold"
+        android:text="VERIFY"
+        android:textSize="15sp"
+        android:textColor="@color/grey_dark"/>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:layout_below="@id/verify_button"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/grey_ligh"
+            android:id="@+id/question_text"
+            android:text="Didn't receive the verification OTP?"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resend"
+            android:id="@+id/resend"
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/mainlightColor"
+            android:layout_toRightOf="@id/question_text"
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>
