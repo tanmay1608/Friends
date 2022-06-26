@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/project/app/src/main/res/layout/activity_main.xml" value="0.18345323741007194" />
+        <entry key="..\:/project/app/src/main/res/drawable/get_otp_button_bg.xml" value="0.27395833333333336" />
+        <entry key="..\:/project/app/src/main/res/drawable/phone_numer_edit_text_bg.xml" value="0.1" />
+        <entry key="..\:/project/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/project/app/src/main/res/layout/activity_otp_auth.xml" value="0.2" />
         <entry key="..\:/project/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/project/app/src/main/res/layout/content_main.xml" value="0.2578125" />
         <entry key="..\:/project/app/src/main/res/layout/fragment_first.xml" value="0.2578125" />

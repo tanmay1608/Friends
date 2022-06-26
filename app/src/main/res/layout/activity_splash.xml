@@ -6,32 +6,35 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".SplashActivity">
+
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_launcher_background"/>
+        android:src="@drawable/keep_in_touch" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Keep In Touch"
-        android:textColor="#1E1D1D"
+        android:textSize="20sp"
+        android:textColor="@color/grey_dark"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/main_text"
         android:layout_marginBottom="5dp"
         />
 
     <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="With Friends"
         android:layout_alignParentBottom="true"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:id="@+id/main_text"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:textColor="#25d366"/>
+        android:textColor="@color/mainlightColor"/>
 
 
 
