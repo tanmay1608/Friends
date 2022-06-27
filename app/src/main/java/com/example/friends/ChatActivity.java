@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.friends.Fragments.GroupFragment;
 import com.example.friends.Fragments.ChatFragment;
+import com.example.friends.Fragments.GroupFragment;
 import com.example.friends.Fragments.ProfileFragment;
+import com.example.friends.Fragments.SettingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
 
 
 public class ChatActivity extends AppCompatActivity {
@@ -32,9 +32,33 @@ public class ChatActivity extends AppCompatActivity {
       //  binding=ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_chat);
         bottomNavigationView=findViewById(R.id.bottom_navigation);
-        replaceFragment(new GroupFragment());
+        replaceFragment(new ChatFragment());
 
 
+//    bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                            Fragment fragment=null;
+//                switch (item.getItemId())
+//                {
+//
+//                    case R.id.chat:
+//                        fragment=new ChatFragment();
+//                        break;
+//                    case R.id.group:
+//                        fragment=new GroupFragment();
+//                        break;
+//                    case R.id.profile:
+//                        fragment=new ProfileFragment();
+//                        break;
+//                    default:
+//                        fragment=null;
+//                }
+//
+//                replaceFragment(fragment);
+//                return true;
+//        }
+//    });
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -53,6 +77,10 @@ public class ChatActivity extends AppCompatActivity {
                     case R.id.profile:
                         fragment=new ProfileFragment();
                         break;
+                    case R.id.setting:
+                        fragment=new SettingFragment();
+                        break;
+
                     default:
                         fragment=null;
                 }
