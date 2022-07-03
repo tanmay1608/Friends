@@ -53,6 +53,17 @@ dependencies {
     //country picker library
     implementation 'com.hbb20:ccp:2.5.1'
 
+    //picaso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+    //firestore dependency
+    implementation 'com.firebaseui:firebase-ui-firestore:4.1.0'
+
+    //lottie
+    implementation 'com.airbnb.android:lottie:3.4.0'
+
+
+
    
 
 

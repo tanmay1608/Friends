@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Fragments.ProfileFragment">
+    tools:context=".Fragments.SearchFragment">
     <ImageView
-        android:id="@+id/tanu_img"
+        android:id="@+id/viewImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/example"
@@ -20,6 +20,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/viewUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TANMAY \nBARJATYA"
@@ -148,10 +149,10 @@
             android:gravity="center"
             >
             <android.widget.Button
-                android:id="@+id/follow_btn"
+                android:id="@+id/update_btn"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="F O L L O W"
+                android:text="U P D A T E"
                 android:textSize="18sp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:textColor="@color/mainlightColor"
@@ -168,7 +169,7 @@
                 android:textStyle="bold"
                 android:textColor="#fff"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/follow_btn"
+                android:layout_below="@+id/update_btn"
                 android:background="@drawable/message_btn_bg">
 
             </android.widget.Button>

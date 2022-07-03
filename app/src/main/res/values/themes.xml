@@ -22,6 +22,7 @@
     <style name="Theme.Friends.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Friends.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="Theme.Friends.StatusBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
