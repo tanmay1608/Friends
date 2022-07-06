@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:layout_height="90dp">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,44 +13,32 @@
         android:paddingBottom="-5dp">
 
         <TextView
-            android:id="@+id/nameofuser"
-            android:layout_width="wrap_content"
+            android:id="@+id/nameofgroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Name Display here"
+            android:layout_centerVertical="true"
             android:layout_marginTop="15dp"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:fontFamily="@font/poppins_medium"
-            android:layout_toRightOf="@+id/cardviewofuser"
+            android:layout_toRightOf="@+id/cardviewofgroup"
             android:layout_marginLeft="15dp"
             android:textColor="@color/grey_dark"></TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            android:textSize="12sp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="3dp"
-            android:fontFamily="@font/poppins_regular"
-            android:id="@+id/statusofuser"
-            android:layout_toRightOf="@+id/cardviewofuser"
-            android:layout_below="@+id/nameofuser"
-            android:textColor="@color/grey_ligh"
-            ></TextView>
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginBottom="20dp"
-            android:id="@+id/cardviewofuser"
+            android:id="@+id/cardviewofgroup"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             app:strokeColor="@color/grey_dark"
             app:strokeWidth="1dp"
-            app:cardCornerRadius="55dp">
+            app:cardCornerRadius="45dp">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/fp"
-                android:id="@+id/imageviewofuser"
+                android:id="@+id/imageviewofgroup"
                 android:scaleType="centerCrop"
                 />
         </com.google.android.material.card.MaterialCardView>
@@ -62,8 +49,8 @@
             android:layout_marginLeft="10dp"
             android:backgroundTint="@color/grey_ligh"
             android:background="@color/grey_ligh"
-            android:layout_below="@+id/cardviewofuser"
-            android:layout_toRightOf="@+id/cardviewofuser"
+            android:layout_below="@+id/cardviewofgroup"
+            android:layout_toRightOf="@+id/cardviewofgroup"
             android:layout_marginTop="-5dp"/>
 
 

@@ -30,23 +30,31 @@
                 android:textStyle="bold"
                 android:textColor="@color/grey_dark"></TextView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/user_id"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/cardview_bg"
                 app:cardCornerRadius="35dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/example"
-                    android:id="@+id/user_image"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    app:cardCornerRadius="35dp"
+                    android:layout_gravity="center">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/fp"
+                        android:id="@+id/user_image"
+                        android:scaleType="centerCrop"
+                        />
 
-                    android:scaleType="centerCrop"
-                    />
-            </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
+
+            </com.google.android.material.card.MaterialCardView>
 
 
         </RelativeLayout>

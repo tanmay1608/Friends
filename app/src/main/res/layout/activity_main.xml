@@ -58,24 +58,24 @@
         android:layout_marginBottom="10dp"/>
 
     <EditText
+        android:id="@+id/get_phone_number"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@+id/country_code_picker"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
-        android:id="@+id/get_phone_number"
-        android:hint="Enter Phone Number"
-        android:textAlignment="center"
-        android:inputType="number"
-        android:layout_centerHorizontal="true"
-        android:elevation="10dp"
-        android:textSize="16sp"
-        android:textColorHint="#8C8C8C"
-        android:textColor="#8C8C8C"
-        android:textStyle="bold"
-        android:maxLength="10"
         android:background="@drawable/phone_numer_edit_text_bg"
-        android:layout_below="@+id/country_code_picker"
-        />
+        android:elevation="10dp"
+        android:autofillHints="phone"
+        android:hint="Enter Phone Number"
+        android:inputType="number"
+        android:maxLength="10"
+        android:textAlignment="center"
+        android:textColor="#8C8C8C"
+        android:textColorHint="#8C8C8C"
+        android:textSize="16sp"
+        android:textStyle="bold" />
     <android.widget.Button
         android:layout_width="wrap_content"
         android:layout_height="40dp"

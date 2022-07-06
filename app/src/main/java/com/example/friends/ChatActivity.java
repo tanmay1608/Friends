@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
@@ -24,7 +26,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.squareup.picasso.Picasso;
 
 
 public class ChatActivity extends AppCompatActivity {
@@ -38,6 +44,11 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private CardView userProfile;
+    private ImageView imageView;
+    private String imagetoken;
+    private SetProfile setProfile;
+
+
 
 
 
@@ -54,10 +65,24 @@ public class ChatActivity extends AppCompatActivity {
 
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         userProfile=findViewById(R.id.user_id);
+        imageView=findViewById(R.id.user_image);
         firebaseAuth=FirebaseAuth.getInstance();
 
         firebaseFirestore=FirebaseFirestore.getInstance();
+
+//        setProfile=new SetProfile();
+//        imagetoken=setProfile.ImageUriAccessToken;
+//        Picasso.get().load(imagetoken).into(imageView);
+        userProfile.setBackgroundResource(R.drawable.cardview_bg);
+
         replaceFragment(new ChatFragment());
+        DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getCurrentUser().getUid());
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                Picasso.get().load(value.getString("image")).into(imageView);
+            }
+        });
 
         userProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,17 +159,17 @@ public class ChatActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
 
-        DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
-        documentReference.update("status","Offline").addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(getApplicationContext(), "Now user is offline", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "net nhi aara", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
+//        documentReference.update("status","Offline").addOnSuccessListener(new OnSuccessListener<Void>() {
+//            @Override
+//            public void onSuccess(Void unused) {
+//                Toast.makeText(getApplicationContext(), "Now user is offline", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(getApplicationContext(), "net nhi aara", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 }

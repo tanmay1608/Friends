@@ -6,23 +6,53 @@
     android:background="@color/white"
     tools:context=".Fragments.GroupFragment">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Groups"
-        android:textSize="20sp"
-        android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/grey_dark"
-        android:textAlignment="textStart"
-        android:id="@+id/grouptext"
-        android:layout_margin="15dp"
-        />
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/group_rl"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Groups"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/grey_dark"
+            android:textAlignment="textStart"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/grouptext"
+            android:layout_margin="15dp"
+            />
+        <ImageView
+            android:id="@+id/create_new_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_group_add_24"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/black"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/grouptext"
+        android:layout_below="@id/group_rl"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:id="@+id/recycler_view"/>
+        android:id="@+id/recycler_view_group"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pg_bar_grp_frag"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+
 </RelativeLayout>

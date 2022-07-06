@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class UpdateActivity extends AppCompatActivity {
     private ImageView imageView;
-    private TextView username;
+    private EditText username,petname;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseFirestore firebaseFirestore;
@@ -47,12 +47,13 @@ public class UpdateActivity extends AppCompatActivity {
     private FirebaseStorage firebaseStorage;
     private Toolbar toolbar;
     private ImageButton imageButton;
+    private EditText lastname;
     private Button updateButton;
     private ProgressBar progressBar;
     private Uri imagepath;
     private Intent intent;
     private static int PICK_IMAGE=123;
-    private String newName;
+    private String newName,lastnewname,newpetname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +64,9 @@ public class UpdateActivity extends AppCompatActivity {
         imageButton=findViewById(R.id.backbutton);
         imageView=findViewById(R.id.getnewimageinimageview);
         progressBar=findViewById(R.id.pg_bar_update);
-        username=findViewById(R.id.getnewUserName);
+        username=findViewById(R.id.getnewUserfirstName);
+        lastname=findViewById(R.id.getnewUserlastName);
+        petname=findViewById(R.id.getnewUserpetName);
         updateButton=findViewById(R.id.update_button);
 
         progressBar.setVisibility(View.INVISIBLE);
@@ -83,7 +86,9 @@ public class UpdateActivity extends AppCompatActivity {
             }
         });
 
-        username.setText(intent.getStringExtra("nameofuser"));
+        username.setText(intent.getStringExtra("firstname"));
+        lastname.setText(intent.getStringExtra("lastname"));
+        petname.setText(intent.getStringExtra("petname"));
 
         DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
 
@@ -91,15 +96,17 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 newName=username.getText().toString();
+                lastnewname=lastname.getText().toString();
+                newpetname=petname.getText().toString();
 
-                if (newName.isEmpty())
+                if (newName.isEmpty()||lastnewname.isEmpty()||newpetname.isEmpty())
                 {
-                    Toast.makeText(getApplicationContext(), "Name is Empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Names are Empty", Toast.LENGTH_SHORT).show();
                 }
                 else if(imagepath!=null)
                 {
                     progressBar.setVisibility(View.VISIBLE);
-                    UserProfile userProfile=new UserProfile(newName,firebaseAuth.getUid());
+                    UserProfile userProfile=new UserProfile(newName,firebaseAuth.getUid(),lastnewname,newpetname);
                     databaseReference.setValue(userProfile);
                     
                     updateimagetostorage();
@@ -117,10 +124,11 @@ public class UpdateActivity extends AppCompatActivity {
                 }
                 else{
                     progressBar.setVisibility(View.VISIBLE);
-                    UserProfile userProfile=new UserProfile(newName,firebaseAuth.getUid());
+                    UserProfile userProfile=new UserProfile(newName,firebaseAuth.getUid(),lastnewname,newpetname);
                     databaseReference.setValue(userProfile);
 
                     updatenameoncloudfirestore();
+                   // updatenameonfirebasedatabase();
                     Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
 
                     progressBar.setVisibility(View.INVISIBLE);
@@ -155,7 +163,13 @@ public class UpdateActivity extends AppCompatActivity {
 
     }
 
+    private void updatenameonfirebasedatabase() {
+        firebaseDatabase.getReference().child("Users").child(firebaseAuth.getCurrentUser().getUid()).child("username").setValue(newName);
+        firebaseDatabase.getReference().child("Users").child(firebaseAuth.getCurrentUser().getUid()).child("lastname").setValue(lastnewname);
+    }
+
     private void updatenameoncloudfirestore() {
+
 
         DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
         Map<String,Object> userdata=new HashMap<>();
@@ -163,6 +177,7 @@ public class UpdateActivity extends AppCompatActivity {
         userdata.put("image",ImageURIaccessToken);
         userdata.put("uid",firebaseAuth.getUid());
         userdata.put("status","Online");
+
 
         documentReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -208,6 +223,7 @@ public class UpdateActivity extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         ImageURIaccessToken=uri.toString();
                         Toast.makeText(getApplicationContext(), "URI get success", Toast.LENGTH_SHORT).show();
+                      //  updatenameonfirebasedatabase();
                         updatenameoncloudfirestore();
                     }
                 }).addOnFailureListener(new OnFailureListener() {

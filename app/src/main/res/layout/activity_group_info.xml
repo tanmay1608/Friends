@@ -5,31 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".SetProfile">
+    tools:context=".InfoGroup">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:text="Save Your Profile"
+        android:text="Save Group Info"
         android:layout_marginBottom="30dp"
         android:textColor="@color/mainlightColor"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/getUserImage"/>
+        android:layout_above="@+id/getGroupImage"/>
     <androidx.cardview.widget.CardView
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_above="@+id/getUserfirstName"
+        android:layout_above="@+id/getGroupName"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="80dp"
-        android:id="@+id/getUserImage"
+        android:id="@+id/getGroupImage"
         android:layout_centerHorizontal="true"
         app:cardCornerRadius="130dp">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/fp"
-            android:id="@+id/getimageinimageview"
+            android:id="@+id/getimageinimageviewofGroup"
             android:scaleType="centerCrop"
             />
     </androidx.cardview.widget.CardView>
@@ -39,61 +39,23 @@
         android:layout_height="50dp"
         android:inputType="textCapWords"
         android:textAlignment="center"
-        android:hint="Enter Your First Name"
+        android:hint="Enter Your Name Here"
         android:layout_centerInParent="true"
-        android:id="@+id/getUserfirstName"
-        android:background="@drawable/name_editext_bg"
-        android:elevation="2dp"
+        android:id="@+id/getGroupName"
         android:textColorHint="@color/grey_ligh"
         android:textColor="@color/grey_ligh"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
         />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="textCapWords"
-        android:textAlignment="center"
-        android:hint="Enter Your Last Name"
-        android:layout_centerInParent="true"
-        android:id="@+id/getUserlastName"
-        android:background="@drawable/name_editext_bg"
-        android:elevation="2dp"
-        android:layout_below="@id/getUserfirstName"
-        android:layout_marginTop="10dp"
-        android:textColorHint="@color/grey_ligh"
-        android:textColor="@color/grey_ligh"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="textCapWords"
-        android:textAlignment="center"
-        android:hint="Enter Nick/Pet Name"
-        android:layout_centerInParent="true"
-        android:id="@+id/getUserpetName"
-        android:background="@drawable/name_editext_bg"
-        android:elevation="2dp"
-        android:layout_below="@id/getUserlastName"
-        android:layout_marginTop="10dp"
-        android:textColorHint="@color/grey_ligh"
-        android:textColor="@color/grey_ligh"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        />
-
     <android.widget.Button
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@id/getUserpetName"
-        android:id="@+id/save_button"
+        android:layout_below="@id/getGroupName"
+        android:id="@+id/save_button_grp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:elevation="2dp"
         android:background="@drawable/get_otp_button_bg"
         android:textStyle="bold"
         android:text="SAVE PROFILE"
@@ -102,13 +64,9 @@
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/pg_bar_pro"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/save_button"
+        android:id="@+id/pg_bar_grp"
+        android:layout_below="@+id/save_button_grp"
         android:layout_centerHorizontal="true"/>
-
-
-
 
 
 

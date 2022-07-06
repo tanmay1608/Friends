@@ -29,6 +29,7 @@ public class OtpAuthActivity extends AppCompatActivity {
     EditText mgetotp;
     android.widget.Button mverifyotp;
     String enterdotp;
+    String phoneNumber;
 
     FirebaseAuth firebaseAuth;
     ProgressBar mprogressbarotpauth;
@@ -79,6 +80,7 @@ public class OtpAuthActivity extends AppCompatActivity {
                     mprogressbarotpauth.setVisibility(View.VISIBLE);
                     Intent intent=getIntent();
                     String coderecieved=intent.getExtras().getString("otp");
+                    phoneNumber=intent.getExtras().getString("number");
 
                     Log.d("otp",coderecieved);
                     PhoneAuthCredential credential=PhoneAuthProvider.getCredential(coderecieved,enterdotp);
@@ -105,6 +107,7 @@ public class OtpAuthActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
 
                     Intent intent=new Intent(OtpAuthActivity.this,SetProfile.class);
+                    intent.putExtra("number",phoneNumber);
                     startActivity(intent);
                     finish();
                 }

@@ -9,7 +9,7 @@
         android:id="@+id/viewImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/example"
+        android:src="@drawable/pink_sky_cover"
         android:scaleType="centerCrop"></ImageView>
     <ImageView
         android:layout_width="match_parent"

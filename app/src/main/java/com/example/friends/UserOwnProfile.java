@@ -28,14 +28,15 @@ import com.squareup.picasso.Picasso;
 
 public class UserOwnProfile extends AppCompatActivity {
     private ImageView imageView;
-    private TextView textView;
+    private TextView textView,lastname;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseFirestore firebaseFirestore;
     private StorageReference storageReference;
     private String ImageURIaccessToken;
     private FirebaseStorage firebaseStorage;
-    private Button updateButton;
+    private Button updateButton,messagebtn;
+    private String petname;
 
 
     @Override
@@ -46,7 +47,9 @@ public class UserOwnProfile extends AppCompatActivity {
 
         imageView=findViewById(R.id.viewImageView);
         textView=findViewById(R.id.viewUser_firstName);
+        lastname=findViewById(R.id.viewUser_lastName);
         updateButton=findViewById(R.id.update_btn);
+        messagebtn=findViewById(R.id.message_btn);
         firebaseFirestore=FirebaseFirestore.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
@@ -66,12 +69,14 @@ public class UserOwnProfile extends AppCompatActivity {
             }
         });
 //
-        DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
+        DatabaseReference databaseReference=firebaseDatabase.getReference().child("Users").child(firebaseAuth.getCurrentUser().getUid().toString());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserProfile userProfile=snapshot.getValue(UserProfile.class);
                 textView.setText(userProfile.getUsername());
+                lastname.setText(userProfile.getLastname());
+                petname=userProfile.getPetname();
             }
 
             @Override
@@ -84,8 +89,20 @@ public class UserOwnProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(UserOwnProfile.this, UpdateActivity.class);
-                intent.putExtra("nameofuser",textView.getText().toString());
+                intent.putExtra("firstname",textView.getText().toString());
+                intent.putExtra("lastname",lastname.getText().toString());
+                intent.putExtra("petname",petname);
                 startActivity(intent);
+            }
+        });
+
+        messagebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(UserOwnProfile.this,ChatActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
             }
         });
 

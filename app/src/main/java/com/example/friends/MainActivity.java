@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent=new Intent(MainActivity.this,OtpAuthActivity.class);
                 intent.putExtra("otp",codesent);
+                intent.putExtra("number",phonenumber);
                 startActivity(intent);
             }
         };

@@ -44,18 +44,20 @@ public class SetProfile extends AppCompatActivity {
         private ImageView mgetuserImageinimageview;
         private static int PISCK_IMAGE=123;
         private Uri imagepath;
+        private String phoneNumber;
+        private EditText mgetlastName,mgetpetname;
 
         private EditText mgetusername;
 
         private Button saveprofile;
 
         private FirebaseAuth firebaseAuth;
-        private  String name;
+        private  String firstname,lastname,petname;
 
         private FirebaseStorage firebaseStorage;
         private StorageReference storageReference;
 
-        private String ImageUriAccessToken;
+        public String ImageUriAccessToken;
         private FirebaseFirestore firebaseFirestore;
         ProgressBar mprrogressbarsetProfile;
 
@@ -74,12 +76,18 @@ public class SetProfile extends AppCompatActivity {
         firebaseStorage=FirebaseStorage.getInstance();
         storageReference=firebaseStorage.getReference();
         firebaseFirestore=FirebaseFirestore.getInstance();
+        Intent intent=getIntent();
 
-        mgetusername=findViewById(R.id.getUserName);
+        phoneNumber=intent.getExtras().getString("number");
+
+        mgetusername=findViewById(R.id.getUserfirstName);
+        mgetlastName=findViewById(R.id.getUserlastName);
+        mgetpetname=findViewById(R.id.getUserpetName);
         mgetuserimage=findViewById(R.id.getUserImage);
         mgetuserImageinimageview=findViewById(R.id.getimageinimageview);
         saveprofile=findViewById(R.id.save_button);
         mprrogressbarsetProfile=findViewById(R.id.pg_bar_pro);
+        mprrogressbarsetProfile.setVisibility(View.INVISIBLE);
 
         mgetuserimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,11 +100,14 @@ public class SetProfile extends AppCompatActivity {
         saveprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                name=mgetusername.getText().toString();
+                firstname=mgetusername.getText().toString();
+                lastname=mgetlastName.getText().toString();
+                petname=mgetpetname.getText().toString();
 
-                if (name.isEmpty())
+
+                if (firstname.isEmpty() || lastname.isEmpty()||petname.isEmpty())
                 {
-                    Toast.makeText(getApplicationContext(), "Name is Empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Names are Empty", Toast.LENGTH_SHORT).show();
                 } else if (imagepath==null) {
                     Toast.makeText(getApplicationContext(), "Image is Empty", Toast.LENGTH_SHORT).show();
                 }
@@ -120,12 +131,41 @@ public class SetProfile extends AppCompatActivity {
 
     private void sendDataToRealTimeDatabase() {
 
-        name=mgetusername.getText().toString();
+        firstname=mgetusername.getText().toString();
+        lastname=mgetlastName.getText().toString();
+        petname=mgetpetname.getText().toString();
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
+        DatabaseReference databaseReference=firebaseDatabase.getReference();
 
-        UserProfile userProfile=new UserProfile(name,firebaseAuth.getUid());
-        databaseReference.setValue(userProfile);
+
+
+
+
+//        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+//            if (!TextUtils.isEmpty(token)) {
+//
+//                Log.d("tag1", "retrieve token successful : " + token);
+//            } else{
+//                Log.w("tag2", "token should not be null...");
+//            }
+//        }).addOnFailureListener(e -> {
+//            //handle e
+//        }).addOnCanceledListener(() -> {
+//            //handle cancel
+//        }).addOnCompleteListener(new OnCompleteListener<String>() {
+//            @Override
+//            public void onComplete(@NonNull Task<String> task) {
+//                String str=task.getResult();
+//                databaseReference.child("Users").child(firebaseAuth.getUid()).child("deviceToken").setValue(str);
+//
+//            }
+//        });
+//
+
+
+        UserProfile userProfile=new UserProfile(firstname,firebaseAuth.getUid(),lastname,petname);
+        databaseReference.child("Users").child(firebaseAuth.getUid()).setValue(userProfile);
+
         Toast.makeText(getApplicationContext(), "User Profile Added Successfully", Toast.LENGTH_SHORT).show();
 
         sendImagetostorage();
@@ -189,12 +229,16 @@ public class SetProfile extends AppCompatActivity {
 
     private void sendDataToCloudFireStore() {
 
+
         DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
         Map<String,Object> userdata=new HashMap<>();
-        userdata.put("name",name);
+        userdata.put("name",firstname);
         userdata.put("image",ImageUriAccessToken);
         userdata.put("uid",firebaseAuth.getUid());
         userdata.put("status","Online");
+        userdata.put("number",phoneNumber);
+
+
 
         documentReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
