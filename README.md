@@ -1,4 +1,4 @@
-# FRIEDNS Readme
+# FRIENDS Readme
 
 ## Overview
 
@@ -13,6 +13,15 @@ Friends is a native Android application that provides a platform for one-to-one 
 3. **User Profiles:** Users can create and personalize their profiles, adding details such as a profile picture and other relevant information.
 
 4. **Phone Number Validation using OTP:** To ensure the security of user accounts, ChatApp implements phone number validation using OTP (One-Time Password). Users will receive a unique OTP to verify their phone number during the registration process.
+
+## Screenshots
+
+Here are some screenshots from ChatApp to give you a glimpse of the user interface:
+
+| Login Screen | Verification Screen | One-to-One Messaging | Group Messaging | User Profile |
+|--------------|-------------|-----------------------|------------------|--------------|
+| ![Login Screen](app/images/ss3.jpeg) | ![Home Screen](app/images/ss1.jpeg) | ![One-to-One Messaging](app/images/ss2.jpeg) | ![Group Messaging](app/images/ss5.jpeg) | ![User Profile](app/images/ss4.jpeg) |
+
 
 ## Dependencies Used
 
@@ -54,6 +63,3 @@ dependencies {
     // Lottie
     implementation 'com.airbnb.android:lottie:3.4.0'
 }
-
-
-
